@@ -9,6 +9,7 @@ class App extends Component {
       searchName: '',
       allAnimals: animals,
       mood: 'angry',
+      type: 'cat',
     }
   }
 
@@ -25,9 +26,9 @@ class App extends Component {
 
   filterMood() {
     // console.log('filtrou')
-    const { mood } = this.state;
+    const { mood, type } = this.state;
     let filterMoods = animals;
-    filterMoods = animals.filter((animal) => animal.mood.includes((mood)));
+    filterMoods = animals.filter((animal) => animal.mood.includes((mood)) && animal.type.includes((type)));
     this.setState({
       allAnimals: filterMoods
     })
@@ -45,6 +46,13 @@ class App extends Component {
           value={ searchName }
           onChange={ (e) => this.setState({ searchName: e.target.value }, () => this.filterName())}
         />
+       </label>
+       <label>
+         <select onChange={ (e) => this.setState({ type: e.target.value }) }>
+           <option value="cat">Gato</option>
+           <option value="dog">Cachorro</option>
+           <option value="chicken">Galinha</option>
+         </select>
        </label>
        <label>
          <select onChange={ (e) => this.setState({ mood: e.target.value }, () => console.log(e.target.value)) }>
