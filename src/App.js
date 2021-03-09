@@ -24,7 +24,14 @@ class App extends Component {
   }
 
   filterMood() {
-    console.log('filtrou')
+    // console.log('filtrou')
+    const { mood } = this.state;
+    let filterMoods = animals;
+    filterMoods = animals.filter((animal) => animal.mood.includes((mood)));
+    this.setState({
+      allAnimals: filterMoods
+    })
+    return filterMoods;  
   }
 
   render() {
@@ -40,7 +47,7 @@ class App extends Component {
         />
        </label>
        <label>
-         <select onChange={ (e) => this.setState({ mood: e.target.value }) }>
+         <select onChange={ (e) => this.setState({ mood: e.target.value }, () => console.log(e.target.value)) }>
            <option value="angry">Angry</option>
            <option value="cute">Cute</option>
            <option value="happy">Happy</option>
