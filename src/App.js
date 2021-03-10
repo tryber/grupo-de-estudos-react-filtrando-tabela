@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Table } from './components';
+import Provider from './context/Provider';
 
 class App extends Component {
 
   render() {
     return (
-      <div>
+      <Provider>
         <Table />
-      </div>
+      </Provider>
     );
   }
 }
