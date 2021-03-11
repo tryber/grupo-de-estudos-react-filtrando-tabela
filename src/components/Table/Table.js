@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import '../../App.css';
 import FilterContext from '../../context/FilterContext';
 
-class Table extends Component {
-  render() {
-    const { searchName, allAnimals, filterName, filterMood, handleTypeOrMood } = this.context;
-    return (
+ function Table()  {
+  // render() {
+  const { searchName, allAnimals, filterName, filterMood, setMood, setType } = useContext(FilterContext);
+  return ( 
       <div className="App">
        <label>
         Digite nome
@@ -16,14 +16,14 @@ class Table extends Component {
         />
        </label>
        <label>
-         <select name="type" onChange={ handleTypeOrMood }>
+         <select name="type" onChange={ (e) => setType(e.target.value) }>
            <option value="cat">Gato</option>
            <option value="dog">Cachorro</option>
            <option value="chicken">Galinha</option>
          </select>
        </label>
        <label>
-         <select name="mood" onChange={ handleTypeOrMood }>
+         <select name="mood" onChange={ (e) => setMood(e.target.value) }>
            <option value="angry">Angry</option>
            <option value="cute">Cute</option>
            <option value="happy">Happy</option>
@@ -53,10 +53,10 @@ class Table extends Component {
           </tbody>
         </table>
       </div>
-    );
-  }
+ )
+  
 }
 
-Table.contextType = FilterContext;
+// Table.contextType = FilterContext;
 
 export default Table;
